@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   bloc: ^7.2.1
   flutter_bloc: ^7.3.3
-  formz: ^0.4.1
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:
