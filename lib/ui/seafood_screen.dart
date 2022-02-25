@@ -18,8 +18,8 @@ class SeafoodState extends State<SeafoodScreen> {
 
   @override
   void initState() {
-    _getSeafood(context);
     super.initState();
+    _getSeafood(context);
   }
 
   @override

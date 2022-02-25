@@ -12,8 +12,8 @@ class DessertState extends State<DessertScreen> {
 
   @override
   void initState() {
-    _getDesert(context);
     super.initState();
+    _getDesert(context);
   }
 
   @override
