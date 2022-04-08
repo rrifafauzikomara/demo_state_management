@@ -43,25 +43,25 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
   //   GetDessert event,
   //   Emitter<MealsState> emit,
   // ) async {
-  //   emit(state.copyWith(statusDessert: ApiState.loading, message: "Loading"));
+  //   emit(state.copyWith(statusSeafood: ApiState.loading, message: "Loading"));
   //
   //   try {
   //     final response = await apiService.fetchAllMeals(event.name);
   //
   //     if (response.meals.isEmpty) {
   //       emit(state.copyWith(
-  //         statusDessert: ApiState.noData,
+  //         statusSeafood: ApiState.noData,
   //         message: "No Data",
   //       ));
   //     } else {
   //       emit(state.copyWith(
-  //         statusDessert: ApiState.hasData,
-  //         desserts: response.meals,
+  //         statusSeafood: ApiState.hasData,
+  //         seafoods: response.meals,
   //       ));
   //     }
   //   } catch (e) {
   //     emit(state.copyWith(
-  //       statusDessert: ApiState.error,
+  //       statusSeafood: ApiState.error,
   //       message: e.toString(),
   //     ));
   //   }
