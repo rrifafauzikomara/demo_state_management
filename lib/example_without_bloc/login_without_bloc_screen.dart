@@ -16,19 +16,18 @@ class _LoginWithoutBlocScreenState extends State<LoginWithoutBlocScreen> {
 
   bool _isSubmitButtonEnabled = false;
 
-  void _submitLogin(BuildContext context) {
-    print(
-      'Login Executed:\n'
-      'Email: ${_emailController.text}\n'
-      'Password: ${_passwordController.text}',
-    );
-  }
-
-
+  void _submitLogin(BuildContext context) => _showSnackBar(context);
 
   bool _isFormValid() {
     return ((_emailCodeFormKey.currentState!.isValid &&
         _passwordFormKey.currentState!.isValid));
+  }
+
+  void _showSnackBar(BuildContext context) {
+    const snackBar = SnackBar(
+      content: Text('Yay! Success Login!'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
