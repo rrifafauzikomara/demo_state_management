@@ -4,22 +4,22 @@ import 'package:demo_state_management/core/models/meals_response.dart';
 class MealsState {
   const MealsState({
     this.statusSeafood = ApiState.initial,
-    this.meals = const <MealItem>[],
+    this.seafoods = const <MealItem>[],
     this.message = '',
   });
 
   final ApiState statusSeafood;
-  final List<MealItem> meals;
+  final List<MealItem> seafoods;
   final String message;
 
   MealsState copyWith({
     ApiState? statusSeafood,
-    List<MealItem>? meals,
+    List<MealItem>? seafoods,
     String? message,
   }) {
     return MealsState(
       statusSeafood: statusSeafood ?? this.statusSeafood,
-      meals: meals ?? this.meals,
+      seafoods: seafoods ?? this.seafoods,
       message: message ?? this.message,
     );
   }

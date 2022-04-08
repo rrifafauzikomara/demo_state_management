@@ -13,7 +13,7 @@ class SeafoodScreen extends StatefulWidget {
 
 class SeafoodState extends State<SeafoodScreen> {
   void _getSeafood(BuildContext context) {
-    context.read<MealsBloc>().add(GetSeafood());
+    context.read<MealsBloc>().add(const GetSeafood(name: "Seafood"));
   }
 
   @override
@@ -38,12 +38,12 @@ class SeafoodState extends State<SeafoodScreen> {
                 return Text(state.message);
               } else if (state.statusSeafood.isHasData) {
                 return GridView.builder(
-                  itemCount: state.meals.length,
+                  itemCount: state.seafoods.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    final meal = state.meals[index];
+                    final meal = state.seafoods[index];
                     return CardMeal(
                       imageUrl: meal.strMealThumb ?? '',
                       title: meal.strMeal ?? '',

@@ -6,38 +6,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final ApiService apiService;
 
-  MealsBloc({required this.apiService}) : super(const MealsState());
-
-  @override
-  Stream<MealsState> mapEventToState(MealsEvent event) async* {
-    if (event is GetSeafood) {
-      yield* _fetchAllMeals("Seafood");
-    }
-    //TODO: add for "Dessert"
+  MealsBloc({required this.apiService}) : super(const MealsState()) {
+    on<GetSeafood>(_fetchAllSeafoods);
   }
 
-  Stream<MealsState> _fetchAllMeals(String category) async* {
-    yield state.copyWith(statusSeafood: ApiState.loading, message: "Loading");
+  Future<void> _fetchAllSeafoods(
+    GetSeafood event,
+    Emitter<MealsState> emit,
+  ) async {
+    emit(state.copyWith(statusSeafood: ApiState.loading, message: "Loading"));
 
     try {
-      final response = await apiService.fetchAllMeals(category);
+      final response = await apiService.fetchAllMeals(event.name);
 
       if (response.meals.isEmpty) {
-        yield state.copyWith(
+        emit(state.copyWith(
           statusSeafood: ApiState.noData,
           message: "No Data",
-        );
+        ));
       } else {
-        yield state.copyWith(
+        emit(state.copyWith(
           statusSeafood: ApiState.hasData,
-          meals: response.meals,
-        );
+          seafoods: response.meals,
+        ));
       }
     } catch (e) {
-      yield state.copyWith(
+      emit(state.copyWith(
         statusSeafood: ApiState.error,
         message: e.toString(),
-      );
+      ));
     }
   }
 }
