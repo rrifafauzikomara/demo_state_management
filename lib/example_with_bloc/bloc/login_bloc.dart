@@ -1,4 +1,4 @@
-import 'package:demo_state_management/example_bloc/bloc/bloc.dart';
+import 'package:demo_state_management/example_with_bloc/bloc/bloc.dart';
 import 'package:demo_state_management/utils/string_validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
