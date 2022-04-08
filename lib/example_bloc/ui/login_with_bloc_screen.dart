@@ -10,6 +10,13 @@ class LoginWithBlocScreen extends StatelessWidget {
     context.read<LoginBloc>().add(ValidateLogin());
   }
 
+  void _showSnackBar(BuildContext context, {required String message}) {
+    final snackBar = SnackBar(
+      content: Text(message),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Widget _email() {
     print('Build Email Widget');
     return BlocBuilder<LoginBloc, LoginState>(
@@ -68,6 +75,9 @@ class LoginWithBlocScreen extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         print('Build BLoC Button Widget');
+        if (state.statusLogin.isSubmissionInProgress) {
+          return const CircularProgressIndicator();
+        }
         return ElevatedButton(
           onPressed: state.statusLogin.isValidated
               ? () => _submitLogin(context)
@@ -86,13 +96,10 @@ class LoginWithBlocScreen extends StatelessWidget {
       child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state.statusLogin.isSubmissionSuccess) {
-            print('Login Success');
-          }
-          if (state.statusLogin.isSubmissionInProgress) {
-            print('Login In Progress');
+            _showSnackBar(context, message: 'Yay! Success Login!');
           }
           if (state.statusLogin.isSubmissionFailure) {
-            print('Login Failed');
+            _showSnackBar(context, message: 'Ups! Failed Login!');
           }
         },
         child: Scaffold(
