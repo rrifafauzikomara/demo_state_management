@@ -4,23 +4,8 @@ import 'package:demo_state_management/widget/card_meal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SeafoodScreen extends StatefulWidget {
+class SeafoodScreen extends StatelessWidget {
   const SeafoodScreen({Key? key}) : super(key: key);
-
-  @override
-  SeafoodState createState() => SeafoodState();
-}
-
-class SeafoodState extends State<SeafoodScreen> {
-  void _getSeafood(BuildContext context) {
-    context.read<MealsBloc>().add(const GetSeafood(name: "Seafood"));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getSeafood(context);
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,8 @@
+import 'package:demo_state_management/core/bloc/bloc.dart';
 import 'package:demo_state_management/ui/dessert_screen.dart';
 import 'package:demo_state_management/ui/seafood_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -32,6 +34,21 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _bottomNavIndex = index;
     });
+  }
+
+  void _getSeafood(BuildContext context) {
+    context.read<MealsBloc>().add(const GetSeafood(name: "Seafood"));
+  }
+
+  // void _getDesert(BuildContext context) {
+  //   context.read<MealsBloc>().add(const GetDessert(name: "Dessert"));
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    _getSeafood(context);
+    // _getDesert(context);
   }
 
   @override
