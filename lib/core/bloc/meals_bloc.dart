@@ -8,7 +8,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
 
   MealsBloc({required this.apiService}) : super(const MealsState()) {
     on<GetSeafood>(_fetchAllSeafoods);
-    // on<GetDessert>(_fetchAllDesserts);
+    on<GetDessert>(_fetchAllDesserts);
   }
 
   Future<void> _fetchAllSeafoods(
@@ -39,31 +39,31 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     }
   }
 
-  // Future<void> _fetchAllDesserts(
-  //   GetDessert event,
-  //   Emitter<MealsState> emit,
-  // ) async {
-  //   emit(state.copyWith(statusDessert: ApiState.loading, message: "Loading"));
-  //
-  //   try {
-  //     final response = await apiService.fetchAllMeals(event.name);
-  //
-  //     if (response.meals.isEmpty) {
-  //       emit(state.copyWith(
-  //         statusDessert: ApiState.noData,
-  //         message: "No Data",
-  //       ));
-  //     } else {
-  //       emit(state.copyWith(
-  //         statusDessert: ApiState.hasData,
-  //         desserts: response.meals,
-  //       ));
-  //     }
-  //   } catch (e) {
-  //     emit(state.copyWith(
-  //       statusDessert: ApiState.error,
-  //       message: e.toString(),
-  //     ));
-  //   }
-  // }
+  Future<void> _fetchAllDesserts(
+    GetDessert event,
+    Emitter<MealsState> emit,
+  ) async {
+    emit(state.copyWith(statusDessert: ApiState.loading, message: "Loading"));
+
+    try {
+      final response = await apiService.fetchAllMeals(event.name);
+
+      if (response.meals.isEmpty) {
+        emit(state.copyWith(
+          statusDessert: ApiState.noData,
+          message: "No Data",
+        ));
+      } else {
+        emit(state.copyWith(
+          statusDessert: ApiState.hasData,
+          desserts: response.meals,
+        ));
+      }
+    } catch (e) {
+      emit(state.copyWith(
+        statusDessert: ApiState.error,
+        message: e.toString(),
+      ));
+    }
+  }
 }

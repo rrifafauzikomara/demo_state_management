@@ -40,15 +40,15 @@ class _HomePageState extends State<HomePage> {
     context.read<MealsBloc>().add(const GetSeafood(name: "Seafood"));
   }
 
-  // void _getDesert(BuildContext context) {
-  //   context.read<MealsBloc>().add(const GetDessert(name: "Dessert"));
-  // }
+  void _getDesert(BuildContext context) {
+    context.read<MealsBloc>().add(const GetDessert(name: "Dessert"));
+  }
 
   @override
   void initState() {
     super.initState();
     _getSeafood(context);
-    // _getDesert(context);
+    _getDesert(context);
   }
 
   @override
